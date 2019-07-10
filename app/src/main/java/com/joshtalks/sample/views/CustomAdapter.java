@@ -2,11 +2,8 @@ package com.joshtalks.sample.views;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,6 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             builder.build().load(data.getThumbnail_image())
                     .placeholder((R.drawable.ic_launcher_background))
                     .error(R.drawable.ic_launcher_background)
+                    .resize(100,100)
                     .into(mbinding.imageView);
         }
 

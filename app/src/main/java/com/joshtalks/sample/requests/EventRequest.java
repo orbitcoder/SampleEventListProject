@@ -8,6 +8,7 @@ import com.joshtalks.sample.requests.network.GetDataService;
 import com.joshtalks.sample.requests.network.RetrofitClientInstance;
 import com.joshtalks.sample.response.PostResponse;
 
+import okhttp3.Cache;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +29,9 @@ public class EventRequest {
 
             @Override
             public void onFailure(Call<PostResponse> call, Throwable t) {
-
+                PostResponse response = new PostResponse();
+                response.setError(true);
+                liveData.setValue(response);
             }
 
         });

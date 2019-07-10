@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.joshtalks.sample.databinding.ActivityMainBinding;
 import com.joshtalks.sample.response.PostResponse;
@@ -32,6 +33,14 @@ public class MainActivity extends AppCompatActivity implements Observer<PostResp
         mBinding.recyclerList.setAdapter(adapter);
 
         mViewModel.getDataForPage(currentPage).observe(this, this);
+
+        mBinding.retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentPage = 1;
+                loadNextPage();
+            }
+        });
 
         initRV();
 
@@ -72,10 +81,37 @@ public class MainActivity extends AppCompatActivity implements Observer<PostResp
     @Override
     public void onChanged(PostResponse postResponse) {
         isLoading = false;
-    if (adapter.getItemCount() > 0)
-        adapter.addData(postResponse.getPosts());
-    else
-        adapter.updateData(postResponse.getPosts());
+        if (adapter.getItemCount() > 0) {
+            showListView();
+            adapter.addData(postResponse.getPosts());
+        } else if (postResponse.isError()) {
+            showErrorView();
+        } else if (postResponse.getPosts().size() == 0) {
+            showEmptyView();
+        } else {
+            showListView();
+            adapter.updateData(postResponse.getPosts());
 
+        }
+    }
+
+    private void showEmptyView() {
+        mBinding.recyclerList.setVisibility(View.GONE);
+        mBinding.empty.setVisibility(View.VISIBLE);
+        mBinding.errorView.setVisibility(View.GONE);
+    }
+
+    private void showListView() {
+        if (mBinding.recyclerList.getVisibility() != View.VISIBLE) {
+            mBinding.recyclerList.setVisibility(View.VISIBLE);
+            mBinding.empty.setVisibility(View.GONE);
+            mBinding.errorView.setVisibility(View.GONE);
+        }
+    }
+
+    private void showErrorView() {
+        mBinding.recyclerList.setVisibility(View.GONE);
+        mBinding.empty.setVisibility(View.GONE);
+        mBinding.errorView.setVisibility(View.VISIBLE);
     }
 }

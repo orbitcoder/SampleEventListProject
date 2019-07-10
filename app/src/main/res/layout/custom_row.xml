@@ -65,6 +65,8 @@
             app:layout_constraintBottom_toBottomOf="@id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/views"
             app:layout_constraintHorizontal_bias="0.5"
+            android:drawablePadding="10dp"
+            android:gravity="center"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@id/eventNameBarrier"
             tools:text="likes" />
@@ -79,6 +81,8 @@
             app:layout_constraintEnd_toStartOf="@+id/shares"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/like"
+            android:drawablePadding="10dp"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/eventNameBarrier"
             tools:text="views" />
 
@@ -90,6 +94,8 @@
             android:text="@{String.valueOf(data.shares)}"
             app:layout_constraintBottom_toBottomOf="@id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
+            android:drawablePadding="10dp"
+            android:gravity="center"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/views"
             app:layout_constraintTop_toBottomOf="@id/eventNameBarrier"
