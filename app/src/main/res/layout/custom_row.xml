@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -7,11 +9,12 @@
             type="com.joshtalks.sample.model.EventPostModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:background="@android:color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        >
 
         <ImageView
             android:id="@+id/imageView"
@@ -60,7 +63,9 @@
             android:drawableStart="@drawable/ic_like"
             android:text="@{String.valueOf(data.likes)}"
             app:layout_constraintBottom_toBottomOf="@id/imageView"
-            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/views"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@id/eventNameBarrier"
             tools:text="likes" />
 
@@ -71,7 +76,9 @@
             android:drawableStart="@drawable/ic_views"
             android:text="@{String.valueOf(data.views)}"
             app:layout_constraintBottom_toBottomOf="@id/imageView"
-            app:layout_constraintStart_toEndOf="@id/like"
+            app:layout_constraintEnd_toStartOf="@+id/shares"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/like"
             app:layout_constraintTop_toBottomOf="@id/eventNameBarrier"
             tools:text="views" />
 
@@ -82,7 +89,9 @@
             android:drawableStart="@drawable/ic_share"
             android:text="@{String.valueOf(data.shares)}"
             app:layout_constraintBottom_toBottomOf="@id/imageView"
-            app:layout_constraintStart_toEndOf="@id/views"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/views"
             app:layout_constraintTop_toBottomOf="@id/eventNameBarrier"
             tools:text="shares" />
 
